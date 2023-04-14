@@ -7,16 +7,14 @@ export enum LetterStatus {
 }
 
 export class Letter {
-    letter: string;
+    char: string;
     status: LetterStatus = LetterStatus.NotGuessed;
     constructor(letter: string) {
-        this.letter = letter;
+        this.char = letter;
     }
 
     public get Color() {
         switch (this.status) {
-            case LetterStatus.NotGuessed:
-                return 'grey';
             case LetterStatus.Correct:
                 return 'green';
             case LetterStatus.Misplaced:
