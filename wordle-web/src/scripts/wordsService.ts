@@ -3,13 +3,22 @@ export abstract class WordsService {
       return this.#words[Math.floor(Math.random() * this.#words.length)]
     }
   
-    static isValidWord(word: string): boolean {
-      return this.#words.includes(word)
+    static isValidWord(word: string, currentList: Array<string>): boolean {
+      return currentList.includes(word)
     }
   
-    static validWords(): Array<string> {
+    static validWords(word: string): Array<string> {
       //Todo
-      return new Array<string>()
+      let newList = new Array<string>()
+
+      this.#words.forEach(element => {
+        if(element.startsWith(word)){
+          newList.push(element)
+        }
+      });
+
+      return newList
+
     }
   
     // From: https://github.com/kashapov/react-testing-projects/blob/master/random-word-server/five-letter-words.json

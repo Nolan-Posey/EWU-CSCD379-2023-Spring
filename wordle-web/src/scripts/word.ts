@@ -33,7 +33,7 @@ export class Word {
         this.letters[i].status = LetterStatus.Correct
         guessChars[i] = '_'
         secretChars[i] = '_'
-        console.log(`Letter ${i} is correct`)
+        console.log(`Letter ${this.letters[i].char} is correct`)
       } else if(secretWord.includes(guessChars[i])){
         isCorrect = false;
         this.letters[i].status = LetterStatus.Misplaced
