@@ -1,6 +1,6 @@
 import { Word } from '@/scripts/word'
 import { WordsService } from './wordsService'
-import type { Letter } from './letter'
+import { LetterStatus, type Letter } from './letter'
 
 export class WordleGame {
   constructor(secretWord?: string, numberOfGuesses: number = 6) {
@@ -37,6 +37,17 @@ export class WordleGame {
 
     // Update the guessed letters
     for (const letter of this.guess.letters) {
+      for(const letter2 of this.guessedLetters){
+        if(letter.char === letter2.char){
+          if(letter2.status === LetterStatus.Correct){
+            continue
+          } else if(letter2.status === LetterStatus.Misplaced && letter.status === LetterStatus.Correct){
+            this.guessedLetters.splice(this.guessedLetters.indexOf(letter2), 1)
+          } else {
+            this.guessedLetters.splice(this.guessedLetters.indexOf(letter2), 1)
+          }
+        }
+      }
       this.guessedLetters.push(letter);
     }
 
