@@ -36,19 +36,19 @@ export class WordleGame {
     this.guess.check(this.secretWord)
 
     // Update the guessed letters
-    for (const letter of this.guess.letters) {
-      for(const letter2 of this.guessedLetters){
-        if(letter.char === letter2.char){
-          if(letter2.status === LetterStatus.Correct){
+    for (const guessLetter of this.guess.letters) {
+      for(const guessedLetter of this.guessedLetters){
+        if(guessLetter.char === guessedLetter.char){
+          if(guessedLetter.status === LetterStatus.Correct){
             continue
-          } else if(letter2.status === LetterStatus.Misplaced && letter.status === LetterStatus.Correct){
-            this.guessedLetters.splice(this.guessedLetters.indexOf(letter2), 1)
+          } else if(guessedLetter.status === LetterStatus.Misplaced && guessLetter.status === LetterStatus.Correct){
+            this.guessedLetters.splice(this.guessedLetters.indexOf(guessedLetter), 1)
           } else {
-            this.guessedLetters.splice(this.guessedLetters.indexOf(letter2), 1)
+            this.guessedLetters.splice(this.guessedLetters.indexOf(guessedLetter), 1)
           }
         }
       }
-      this.guessedLetters.push(letter);
+      this.guessedLetters.push(guessLetter);
     }
 
     console.log(this.guessedLetters);
